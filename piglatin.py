@@ -58,17 +58,16 @@ def transform_word(word):
 ## Translate a string to Pig Latin and print the translation.
 def pig_latin(s):
     pig_latin_s = ""
-    translated_w = []
-    is_upper = []
+    translated_w = ""
+    is_upper = False
 
     words = full_split(s)
 
     for word in words: 
-        is_upper.append(word[0].isupper())  # Get capitalized words indexes
-        translated_w.append(transform_word(word))  # Transform to pig latin
-    for i,word in enumerate(translated_w):  # Recapitalize word when needed
-        if(is_upper[i]):
-            pig_latin_s += word.capitalize()
+        is_upper = word[0].isupper()  # Has a capital letter
+        translated_w = transform_word(word)  # Transform to pig latin
+        if(is_upper):
+            pig_latin_s += translated_w.capitalize()
         else:
-            pig_latin_s += word
+            pig_latin_s += translated_w
     return(pig_latin_s)
